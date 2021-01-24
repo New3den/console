@@ -1,9 +1,8 @@
 # New3den/Console
 
 ### Requirements
-1. League/Container (Either with commands loaded into it manually, or via. Reflection)
-2. Composer
-3. PHP8.0 or higher
+1. PSR-11 compatible container
+2. PHP8.0 or higher
 
 ### bin/console example
 
@@ -21,11 +20,17 @@ $autoloader = require $autoloaderPath;
 # Container
 $container = new \League\Container\Container();
 
-# Load the CLIe
+# Load the CLI
 $cli = new \New3den\Console\Console($container, $autoloader);
 
 # Define the class scope to load commands from
 $cli->setNamespace('New3den\\Commands');
+
+# Define the name
+$cli->setConsoleName('New3den');
+
+# Define the version
+$cli->setVersion('1.0.0');
 
 # Run the cli
 $cli->run();
