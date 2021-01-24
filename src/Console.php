@@ -13,7 +13,7 @@ class Console {
         public ContainerInterface $container,
         public ClassLoader $autoloader,
         public ?Application $console = null,
-        protected string $namespace = 'New3den\\Commands',
+        protected string $commandsNamespace = 'New3den\\Commands',
         protected string $consoleName = 'New3den',
         protected string $version = '1.0.0'
     ) {
@@ -26,11 +26,12 @@ class Console {
 
         // Load the commands
         foreach($this->autoloader->getClassMap() as $class => $path) {
-            if (str_starts_with($class, $this->namespace)) {
+            if (str_starts_with($class, $this->commandsNamespace)) {
                 $this->console->add($this->container->get($class));
             }
         }
 
+        // Run the console (or fail)
         try {
             return $this->console->run();
         } catch (Exception $e) {
@@ -38,14 +39,14 @@ class Console {
         }
     }
 
-    public function setNamespace(string $namespace): void
+    public function setCommandsNamespace(string $commandsNamespace): void
     {
-        $this->namespace = $namespace;
+        $this->commandsNamespace = $commandsNamespace;
     }
 
-    public function getNamespace(): string
+    public function getCommandsNamespace(): string
     {
-        return $this->namespace;
+        return $this->commandsNamespace;
     }
 
     public function getConsoleName(): string

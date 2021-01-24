@@ -24,7 +24,7 @@ $container = new \League\Container\Container();
 $cli = new \New3den\Console\Console($container, $autoloader);
 
 # Define the class scope to load commands from
-$cli->setNamespace('New3den\\Commands');
+$cli->setCommandsNamespace('New3den\\Commands');
 
 # Define the name
 $cli->setConsoleName('New3den');
