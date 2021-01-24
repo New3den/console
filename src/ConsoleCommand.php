@@ -7,5 +7,5 @@ abstract class ConsoleCommand extends ConsoleCommandHelper
     protected string $signature;
     protected string $description;
 
-    abstract public function handle(): int;
+    abstract public function handle(): void;
 }
