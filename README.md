@@ -20,6 +20,9 @@ $autoloader = require $autoloaderPath;
 # Container
 $container = new \League\Container\Container();
 
+# Autowiring
+$container->delegate(new \League\Container\ReflectionContainer());
+
 # Load the CLI
 $cli = new \New3den\Console\Console($container, $autoloader);
 
